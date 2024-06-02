@@ -5,3 +5,4 @@
 # FLUSH PRIVILEGES;
 # FLUSH PRIVILEGES;
 #
+ oc cp wp-config.php wordpress-77b96bc968-6lq77:/bitnami/wordpress/wp-config.php
