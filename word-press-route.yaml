@@ -1,0 +1,31 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: wordpress
+  namespace: wordpress
+  labels:
+    app: wordpress
+    app.kubernetes.io/component: wordpress
+    app.kubernetes.io/instance: wordpress
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  host: wordpress-wordpress.apps-crc.testing
+  to:
+    kind: Service
+    name: wordpress
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: wordpress-wordpress.apps-crc.testing
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2024-06-02T15:29:56Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: router-default.apps-crc.testing
+

@@ -1,0 +1,73 @@
+wordpress:
+  image:
+    registry: docker.io
+    repository: bitnami/wordpress
+    tag: 6.5.3-debian-12-r6
+
+  wordpressUsername: user
+  wordpressPassword: password
+  wordpressEmail: user@example.com
+  wordpressFirstName: FirstName
+  wordpressLastName: LastName
+  wordpressBlogName: User's Blog
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  externalDatabase:
+    host: mariadb
+    user: bn_wordpress
+    password: password
+    database: bitnami_wordpress
+
+  memcached:
+    enabled: true
+
+  mariadb:
+    enabled: true
+    architecture: standalone
+    auth:
+      rootPassword: password
+      database: bitnami_wordpress
+      username: bn_wordpress
+      password: password
+    primary:
+      persistence:
+        enabled: true
+        storageClass: ""
+        accessModes: []
+        size: 8Gi
+      resourcesPreset: micro
+      resources: {}
+
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+
+annotations:
+  category: CMS
+  licenses: Apache-2.0
+
+dependencies:
+  - name: memcached
+    version: 7.x.x
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    condition: memcached.enabled
+  - name: mariadb
+    version: 18.x.x
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    condition: mariadb.enabled
+

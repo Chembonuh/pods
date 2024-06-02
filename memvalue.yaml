@@ -1,0 +1,31 @@
+# memvalue.yaml
+replicaCount: 1
+
+image:
+  registry: docker.io
+  repository: bitnami/memcached
+  tag: 1.6.15-debian-10-r0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 11211
+
+memcached:
+  maxItemMemory: 64
+  verbose: false
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+  limits:
+    memory: 512Mi
+    cpu: 200m
+
+persistence:
+  enabled: false
+
+metrics:
+  enabled: false
+
