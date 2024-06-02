@@ -25,15 +25,9 @@ spec:
                 name: app-secret
                 key: MARIADB_ROOT_PASSWORD
           - name: MARIADB_DATABASE
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: MARIADB_DATABASE
+            value: bitnami_wordpress
           - name: MARIADB_USER
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: MARIADB_USER
+            value: bn_wordpress
           - name: MARIADB_PASSWORD
             valueFrom:
               secretKeyRef:

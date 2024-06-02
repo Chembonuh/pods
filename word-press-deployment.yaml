@@ -37,15 +37,9 @@ spec:
           - name: WORDPRESS_DATABASE_HOST
             value: "mariadb"
           - name: WORDPRESS_DATABASE_NAME
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: MARIADB_DATABASE
+            value: bitnami_wordpress
           - name: WORDPRESS_DATABASE_USER
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: MARIADB_USER
+            value: bn_wordpress
           - name: WORDPRESS_DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
