@@ -2,7 +2,7 @@ wordpress:
   image:
     registry: docker.io
     repository: bitnami/wordpress
-    tag: 6.5.3-debian-12-r6
+   # tag: 6.5.3-debian-12-r6
 
   wordpressUsername: user
   wordpressPassword: password
